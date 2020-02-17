@@ -36,6 +36,7 @@
   "Among with no break line": "Сред с ",
   "Type to search": "Въведете за търсене",
 <<<<<<< HEAD
+<<<<<<< HEAD
   "No results for your search, try something different.": "Няма резултати за твоето търсене, опитай с нещо различно.",
   "JavaScript license information": "Информация за лиценз на JavaScript",
   "Toggle dark mode": "Превключи тъмен режим"
@@ -80,4 +81,11 @@
 =======
   "No results for your search, try something different.": "Няма резултати за твоето търсене, опитай с нещо различно."
 >>>>>>> done the bg translation. ready for tests
+=======
+  "No results for your search, try something different.": "Няма резултати за твоето търсене, опитай с нещо различно."
+=======
+  "No results for your search, try something different.": "Няма резултати за твоето търсене, опитай с нещо различно.",
+  "JavaScript license information": "Информация за лиценз на JavaScript"
+>>>>>>> 189678c67513366b3b7cd4f079afb3de1313084e
+>>>>>>> 372e1f115ed0e8ea2f6038572d9f8bab82b8017c
 }
