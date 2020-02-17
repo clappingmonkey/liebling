@@ -1,11 +1,24 @@
+import cssVars from 'css-vars-ponyfill'
 import $ from 'jquery'
+import lozad from 'lozad'
+import Headroom from "headroom.js"
 import slick from 'slick-carousel'
 import tippy from 'tippy.js'
 import AOS from 'aos'
-import GhostContentAPI from '@tryghost/content-api'
 import Fuse from 'fuse.js'
+import {
+  isRTL,
+  formatDate,
+  isDarkMode
+} from './helpers'
+
+cssVars({})
 
 $(document).ready(() => {
+  if (isRTL()) {
+    $('html').attr('dir', 'rtl').addClass('rtl')
+  }
+
   const $body = $('body')
   const $header = $('.js-header')
   const $openMenu = $('.js-open-menu')
@@ -21,54 +34,11 @@ $(document).ready(() => {
   const $inputSearch = $('.js-input-search')
   const $searchResults = $('.js-search-results')
   const $searchNoResults = $('.js-no-results')
-
-  const headerHeight = $header.outerHeight()
+  const $toggleDarkMode = $('.js-toggle-darkmode')
+  const currentSavedTheme = localStorage.getItem('theme')
 
   let fuse = null
-  let lastScrollY = window.pageYOffset
-  let ticking = false
   let submenuIsOpen = false
-
-  function onScroll() {
-    requestTick()
-  }
-
-  function requestTick() {
-    if (!ticking) {
-      requestAnimationFrame(toggleHeader)
-    }
-
-    ticking = true
-  }
-
-  function toggleHeader() {
-    const scrollTop = window.pageYOffset
-
-    if (scrollTop >= headerHeight) {
-      $header.addClass('fixed')
-
-      if (submenuIsOpen) {
-        $header.addClass('fixed-active')
-      }
-
-      if (scrollTop >= lastScrollY) {
-        if (!submenuIsOpen) {
-          $header.removeClass('fixed-active')
-        }
-      } else {
-        $header.addClass('fixed-active')
-      }
-    } else {
-      if (!submenuIsOpen) {
-        $header.removeClass('fixed-active')
-      }
-
-      $header.removeClass('fixed')
-    }
-
-    lastScrollY = scrollTop
-    ticking = false
-  }
 
   function showSubmenu() {
     $header.addClass('submenu-is-active')
@@ -90,7 +60,7 @@ $(document).ready(() => {
     if (typeof ghostSearchApiKey !== 'undefined') {
       getAllPosts(ghostHost, ghostSearchApiKey)
     } else {
-      $openSearch.remove()
+      $openSearch.css('visibility', 'hidden')
       $closeSearch.remove()
       $search.remove()
     }
@@ -98,7 +68,7 @@ $(document).ready(() => {
 
   function getAllPosts(host, key) {
     const api = new GhostContentAPI({
-      host,
+      url: host,
       key,
       version: 'v2'
     })
@@ -131,27 +101,14 @@ $(document).ready(() => {
       })
   }
 
-  function formatDate(date) {
-    if (date) {
-      return new Date(date).toLocaleDateString(
-        document.documentElement.lang,
-        {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric'
-        }
-      )
-    }
-
-    return ''
-  }
-
   $openMenu.click(() => {
+    $header.addClass('mobile-menu-opened')
     $menu.addClass('opened')
     toggleScrollVertical()
   })
 
   $closeMenu.click(() => {
+    $header.removeClass('mobile-menu-opened')
     $menu.removeClass('opened')
     toggleScrollVertical()
   })
@@ -211,6 +168,16 @@ $(document).ready(() => {
     }
   })
 
+  $toggleDarkMode.change(() => {
+    if ($toggleDarkMode.is(':checked')) {
+      $('html').attr('data-theme', 'dark')
+      localStorage.setItem('theme', 'dark')
+    } else {
+      $('html').attr('data-theme', 'light')
+      localStorage.setItem('theme', 'light')
+    }
+  })
+
   $(window).click((e) => {
     if (submenuIsOpen) {
       if ($submenuOption && !$submenuOption.contains(e.target)) {
@@ -220,24 +187,59 @@ $(document).ready(() => {
     }
   })
 
+  if (currentSavedTheme) {
+    $('html').attr('data-theme', currentSavedTheme)
+
+    if (currentSavedTheme === 'dark') {
+      $toggleDarkMode.attr('checked', true)
+    }
+  } else {
+    if (isDarkMode()) {
+      $toggleDarkMode.attr('checked', true)
+    }
+  }
+
+  var headerElement = document.querySelector('.js-header')
+
+  if (headerElement) {
+    var headroom = new Headroom(headerElement, {
+      tolerance: {
+        down: 10,
+        up: 20
+      },
+      offset: 15
+    })
+    headroom.init()
+  }
+
   if ($recentArticles.length > 0) {
     $recentArticles.slick({
       adaptiveHeight: true,
       arrows: false,
       infinite: false,
       mobileFirst: true,
-      variableWidth: true
+      variableWidth: true,
+      rtl: isRTL()
     })
   }
 
-  AOS.init({
-    once: true,
-    startEvent: 'DOMContentLoaded',
+  if (typeof disableFadeAnimation === 'undefined' || !disableFadeAnimation) {
+    AOS.init({
+      once: true,
+      startEvent: 'DOMContentLoaded',
+    })
+  } else {
+    $('[data-aos]').addClass('no-aos-animation')
+  }
+
+  const observer = lozad('.lozad', {
+    loaded: (el) => {
+      el.classList.add('loaded')
+    }
   })
+  observer.observe()
 
   tippy('.js-tooltip')
 
   trySearchFeature()
-
-  window.addEventListener('scroll', onScroll, { passive: true })
 })

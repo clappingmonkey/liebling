@@ -34,5 +34,10 @@
   "Among with": "<br>Сред с ",
   "Among with no break line": "Сред с ",
   "Type to search": "Въведете за търсене",
+<<<<<<< HEAD
   "No results for your search, try something different.": "Няма резултати за твоето търсене, опитай с нещо различно."
+=======
+  "No results for your search, try something different.": "Няма резултати за твоето търсене, опитай с нещо различно.",
+  "JavaScript license information": "Информация за лиценз на JavaScript"
+>>>>>>> 189678c67513366b3b7cd4f079afb3de1313084e
 }

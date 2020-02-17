@@ -9,7 +9,7 @@ into the {body} of the default.hbs template --}}
 <div class="main-wrap">
   {{!-- Everything inside the #tag tags pulls data from the tag --}}
   {{#tag}}
-  {{!--Special header.hbs partial to generate the <header> tag--}}
+  {{!-- Special header.hbs partial to generate the <header> tag --}}
   {{> header background=feature_image}}
   {{!-- Inject styles of the hero image to make it responsive --}}
   {{> hero background=feature_image}}
@@ -19,7 +19,7 @@ into the {body} of the default.hbs template --}}
       {{plural ../pagination.total empty=(t "No posts") singular=(t "1 post") plural=(t "% posts")}} {{t "with this tag"}}
     </p>
   </div>
-  </header>
+  </section>
   {{/tag}}
   
   <main>

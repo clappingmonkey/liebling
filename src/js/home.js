@@ -1,5 +1,6 @@
 import $ from 'jquery'
 import slick from 'slick-carousel'
+import { isRTL } from './helpers'
 
 $(document).ready(() => {
   const $featuredArticles = $('.js-featured-articles')
@@ -10,7 +11,8 @@ $(document).ready(() => {
       infinite: true,
       prevArrow: '<button class="m-icon-button in-featured-articles slick-prev" aria-label="Previous"><span class="icon-arrow-left"></span></button>',
       nextArrow: '<button class="m-icon-button in-featured-articles slick-next" aria-label="Next"><span class="icon-arrow-right"></span></button>',
-      mobileFirst: true
+      mobileFirst: true,
+      rtl: isRTL()
     })
     
     setTimeout(() => {

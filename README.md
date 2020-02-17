@@ -1,6 +1,6 @@
 # Liebling
 
-Liebling is a beautiful and clean Ghost theme that is easy and comfortable to use. **It's free** and you can use it for any kind of content you might have.
+Liebling is a beautiful and clean Ghost theme that is easy and comfortable to use. **It's free** and you can use it for any kind of content you might have. Now with dark mode 🌓!
 
 If you use it and you like it, please consider to make a donation to support its development! 🙏🏼
 
@@ -10,13 +10,13 @@ If you use it and you like it, please consider to make a donation to support its
 
 You can see a live demo here: [https://liebling.eduardogomez.io](https://liebling.eduardogomez.io)
 
-![](https://res.cloudinary.com/edev/image/upload/v1557074150/liebling/liebling-promo-ipad.jpg)
+![](https://res.cloudinary.com/edev/image/upload/v1570370297/liebling/liebling-promo-ipad.jpg)
 <br><br>
-![](https://res.cloudinary.com/edev/image/upload/v1557074150/liebling/liebling-promo-mobile.jpg)
+![](https://res.cloudinary.com/edev/image/upload/v1570370297/liebling/liebling-promo-mobile.jpg)
 
 ## Download
 
-To download the latest version please head over the [releases page](https://github.com/eddiesigner/liebling/releases) and click on the zip link from the latest release.
+To get the latest version please head over the [releases page](https://github.com/eddiesigner/liebling/releases) and download the file `liebling.zip` of the latest release.
 
 ## Features
 
@@ -36,6 +36,7 @@ To download the latest version please head over the [releases page](https://gith
 * Featured posts and pages
 * Post, Page, Tag, Authors, pages
 * Koenig editor
+* Bookmark card
 * Gallery card
 * Blog title and description
 * Cover image for Home, Post, Page, Tag, Author pages
@@ -47,6 +48,7 @@ To download the latest version please head over the [releases page](https://gith
 
 ### Liebling unique features
 
+* Dark mode
 * Search
 * Custom Subscribe page
 * Custom authors page
@@ -57,6 +59,7 @@ To download the latest version please head over the [releases page](https://gith
 * Slider for featured posts
 * Support for normal, wide and full images in posts
 * Reading progress indicator
+* RTL language support
 
 ## Localization
 
@@ -64,6 +67,18 @@ To download the latest version please head over the [releases page](https://gith
 * Spanish
 * German by [D3473R](https://github.com/D3473R)
 * Informal german by [D3473R](https://github.com/D3473R)
+* Bulgarian by [clappingmonkey](https://github.com/clappingmonkey)
+* Vietnamese by [hiensarahly](https://github.com/hiensarahly)
+* Italian by [vignini](https://github.com/vignini)
+* French by [v1nc3nt-fr](https://github.com/v1nc3nt-fr)
+* Informal french by [v1nc3nt-fr](https://github.com/v1nc3nt-fr)
+* Portuguese by [ivomota](https://github.com/ivomota)
+* Arabic by [allamiro](https://github.com/allamiro)
+* Polish by [otlet](https://github.com/otlet)
+* Brazilian portuguese by [pedrinholula](https://github.com/pedrinholula)
+* Russian by [stereohorse](https://github.com/stereohorse)
+* Kyrgyz by [januchaos](https://github.com/januchaos)
+* Hebrew by [cohen604](https://github.com/cohen604)
 
 ## Theme tested
 
@@ -72,6 +87,12 @@ To download the latest version please head over the [releases page](https://gith
 * GTmetrix PageSpeed Score: **A (97%)**
 * PageSpeed Insights: **94/100** (mobile) **99/100** (desktop)
 * Pingdom Performance Grade: **A 91**
+
+## Theme development
+
+Thanks to [D3473R](https://github.com/D3473R) 💪🏼 for create a development environment with Docker. From now on you can work on this theme without installing a Ghost instance on your local machine. With two commands you have an instant development setup and you can build the theme for production.
+
+Please take a look to this page to see how it works: https://github.com/eddiesigner/liebling/wiki/Theme-development-with-Docker
 
 ## Help and Support
 
@@ -86,4 +107,3 @@ Copyright (c) 2018-2019 Eduardo Gómez. Released under the [MIT license](https:/
 ## Credits
 
 All photos I used on this theme are from [Unsplash](https://unsplash.com)
-

@@ -3,6 +3,10 @@ import slick from 'slick-carousel'
 import stickybits from 'stickybits'
 import mediumZoom from 'medium-zoom'
 import fitvids from 'fitvids'
+import {
+  isRTL,
+  isMobile
+} from './helpers'
 
 let $aosWrapper = null
 let $progressCircle = null
@@ -11,10 +15,6 @@ let lastWindowHeight = 0
 let lastDocumentHeight = 0
 let circumference = 0
 let isTicking = false
-
-function isMobile(width = '768px') {
-  return window.matchMedia(`(max-width: ${width})`).matches
-}
 
 function onScrolling() {
   lastScrollingY = window.pageYOffset
@@ -150,7 +150,8 @@ $(document).ready(() => {
             slidesToShow: 3
           }
         }
-      ]
+      ],
+      rtl: isRTL()
     })
   }
 
@@ -166,7 +167,9 @@ $(document).ready(() => {
   })
 
   $('.js-post-content').find('img').each(function() {
-    $(this).addClass('js-zoomable')
+    if (!$(this).closest('figure').hasClass('kg-bookmark-card')) {
+      $(this).addClass('js-zoomable')
+    }
 
     const $figcaption = $(this).parent().find('figcaption')
     if ($figcaption) {
